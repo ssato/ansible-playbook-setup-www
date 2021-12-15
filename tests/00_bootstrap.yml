@@ -1,0 +1,25 @@
+---
+# SPDX-License-Identifier: MIT
+#
+# Setup before running tests for the ansible playbook.
+#
+- name: Bootstrap env - 00
+  hosts: container_hosts
+  gather_facts: false
+  tasks:
+    - name: Ensure required collections are installed
+      command:
+        cmd: ansible-galaxy collection install containers.podman -p collections
+      register: __result
+      changed_when:
+        - not ('Skipping' in __result.stdout)
+
+    # - debug:
+    #    var: __result
+
+    - name: Test if collections were installed
+      command: >
+        test -d {{ item }}
+      loop:
+        - collections/ansible_collections/containers/podman/
+      changed_when: false

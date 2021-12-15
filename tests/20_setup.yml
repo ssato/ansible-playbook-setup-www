@@ -1,0 +1,26 @@
+---
+# SPDX-License-Identifier: MIT
+#
+# Run container before running tests for the ansible playbook.
+#
+- name: Setup before running tests
+  hosts: container_hosts
+  gather_facts: false
+  vars:
+    www_datadir: /tmp/www
+
+  tasks:
+    - name: Ensure www data dir exists
+      file:
+        path: "{{ www_datadir }}"
+        state: directory
+
+    - name: Ensure required container images are running
+      containers.podman.podman_container:
+        name: www01
+        image: docker.io/centos/systemd:latest
+        ports: 8080:80
+        volume:
+          - "/var/www/html:{{ www_datadir }}:Z"
+        command: /usr/sbin/init
+        state: started

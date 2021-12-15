@@ -1,0 +1,13 @@
+---
+# SPDX-License-Identifier: MIT
+#
+# Setup before running tests for the ansible playbook.
+#
+- name: Bootstrap 10
+  hosts: container_hosts
+  gather_facts: false
+  tasks:
+    - name: Ensure required container images are pulled
+      containers.podman.podman_image:
+        name: docker.io/centos/systemd
+        tag: latest

@@ -1,0 +1,12 @@
+[container_hosts]
+localhost ansible_host=127.0.0.1
+
+[www]
+www01
+
+[container_hosts:vars]
+ansible_connection=local
+ansible_python_interpreter=/usr/bin/python3
+
+[www:vars]
+ansible_connection=podman
