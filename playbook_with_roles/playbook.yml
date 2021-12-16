@@ -9,6 +9,12 @@
   become: true
   roles:
     - github.ssato.simple-httpd-example
+
+- name: Test www
+  hosts: www
+  gather_facts: true
+  become: true
+  vars:
+    sshe_verification_mode: true
+  roles:
     - name: github.ssato.simple-httpd-example
-      vars:
-        sshe_verification_mode: true
