@@ -1,10 +1,8 @@
 # ansible-playbook-setup-www
-Very simple ansible playbook exampls to setup www server.
+Very simple ansible playbook exampls to setup and test www server.
 
-## Badges
-
-[GitHub Actions Status](https://github.com/ssato/ansible-playbook-setup-www/workflows/Tests/badge.svg)](https://github.com/ssato/ansible-playbook-setu-www/actions?query=workflow%3ATests)
+[![GitHub Actions Status](https://github.com/ssato/ansible-playbook-setup-www/actions/workflows/tests.yml/badge.svg)](https://github.com/ssato/ansible-playbook-setup-www/actions/workflows/tests.yml)
 
 ## How to run
 
-TBD
+see tox.ini
