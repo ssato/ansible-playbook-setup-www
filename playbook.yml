@@ -5,11 +5,17 @@
 #
 - name: Setup www
   hosts: www
-  gather_facts: false
+  gather_facts: true
+  become: true
+  vars:
+    www_package: >-
+      {{ 'httpd' if ansible_os_family == 'RedHat' else 'apache2' }}
+    www_service: >-
+      {{ 'httpd' if ansible_os_family == 'RedHat' else 'apache2' }}
   tasks:
     - name: Ensure required packages are installed
       package:
-        name: httpd
+        name: "{{ www_package }}"
         state: present
 
     # workaround to let systemd knows about this new service.
@@ -38,7 +44,7 @@
 
     - name: Ensure www server is started
       service:
-        name: httpd
+        name: "{{ www_service }}"
         state: started
 
     - name: Test everything works

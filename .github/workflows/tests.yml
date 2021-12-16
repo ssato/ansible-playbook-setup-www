@@ -1,0 +1,20 @@
+---
+# .. seealso:: https://github.com/ymyzk/tox-gh-actions
+#
+name: Tests in the default os
+# yamllint disable-line rule:truthy
+on:
+  - push
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+      - name: Install dependencies
+        run: |
+          yum install -y python3 python3-pip || :
+          pip3 install tox tox-gh-actions
+      - name: Test with tox
+        run: tox
+
+# vim:sw=2:ts=2:et:
