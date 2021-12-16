@@ -7,7 +7,8 @@
   hosts: www
   gather_facts: true
   become: true
-  vars:
-    sshe_verification_mode: true
   roles:
     - github.ssato.simple-httpd-example
+    - name: github.ssato.simple-httpd-example
+      vars:
+        sshe_verification_mode: true
