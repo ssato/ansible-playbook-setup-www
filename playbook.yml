@@ -12,11 +12,6 @@
         name: httpd
         state: present
 
-    - name: Ensure www server is started
-      service:
-        name: httpd
-        state: started
-
     - name: Ensure www contents exist
       copy:
         content: |
@@ -26,9 +21,14 @@
           </html>
         dest: /var/www/html/hello.html
         mode: 0644
-        seuser: system_u
-        serole: object_r
-        setype: httpd_system_content_t
+        # seuser: system_u
+        # serole: object_r
+        # setype: httpd_system_content_t
+
+    - name: Ensure www server is started
+      service:
+        name: httpd
+        state: started
 
     - name: Test everything works
       uri:
