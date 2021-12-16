@@ -20,6 +20,8 @@
       command: |
         systemctl daemon-reload
       changed_when: false
+      tags:
+        - skip_ansible_lint
 
     - name: Ensure www contents exist
       copy:
