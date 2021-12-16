@@ -8,7 +8,13 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: docker.io/centos/systemd
+    container:
+      image: docker.io/centos/systemd
+      volumes:
+        - /sys/fs/cgroup:/sys/fs/cgroup:ro
+      options: --tmpfs /run --tmpfs /tmp --entrypoint /usr/sbin/init
+    env:
+      SHELL: /sbin/init
 
     steps:
       - uses: actions/checkout@v1
