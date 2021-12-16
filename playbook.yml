@@ -12,6 +12,15 @@
         name: httpd
         state: present
 
+    # workaround to let systemd knows about this new service.
+    #
+    # :seealso:
+    # https://github.com/ansible/ansible/issues/36585#issuecomment-441300410
+    - name: Ensure this new service is registered
+      command: |
+        systemctl daemon-reload
+      changed_when: false
+
     - name: Ensure www contents exist
       copy:
         content: |
