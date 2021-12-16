@@ -1,0 +1,13 @@
+---
+# SPDX-License-Identifier: MIT
+#
+# Setup www.
+#
+- name: Setup www
+  hosts: www
+  gather_facts: true
+  become: true
+  vars:
+    sshe_verification_mode: true
+  roles:
+    - github.ssato.simple-httpd-example

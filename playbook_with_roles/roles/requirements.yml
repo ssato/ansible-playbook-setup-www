@@ -1,0 +1,11 @@
+---
+# github:
+#   src: <github.url>
+#   [name: <role.name>]
+#   [version: ...]
+#
+- src: https://github.com/ssato/ansible-role-simple-httpd-example
+  name: github.ssato.simple-httpd-example
+  # version: master
+
+# vim:sw=2:ts=2:et:
